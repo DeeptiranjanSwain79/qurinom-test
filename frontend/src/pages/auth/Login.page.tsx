@@ -35,7 +35,6 @@ const LoginPage = () => {
 };
 
 export const LoginComponent = () => {
-  const { activeText } = useContext(NavbarContext);
   const { setUser, user } = useContext(AuthContext) as AuthContextType;
   const [showPassword, setShowPassword] = useState(false);
 
