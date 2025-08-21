@@ -2,9 +2,11 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import {
   Box,
+  FormControlLabel,
   IconButton,
   InputAdornment,
   Link,
+  Switch,
   TextField,
   Typography,
 } from "@mui/material";
@@ -28,6 +30,7 @@ const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const [isMerchant, setIsMerchant] = useState(false);
 
   useEffect(() => {
     setActiveText("register");
@@ -54,14 +57,6 @@ const RegisterPage = () => {
     },
   };
 
-  // const handlePhotoUpload = (e: any) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     console.log("Selected photo:", file.name);
-  //     // handle upload logic here
-  //   }
-  // };
-
   const handleRegister = async (e: FormEvent) => {
     try {
       e.preventDefault();
@@ -73,6 +68,7 @@ const RegisterPage = () => {
         email,
         phone: phoneNumber,
         password,
+        role: isMerchant ? "MERCHANT" : "USER",
       });
       if (result) {
         toast.success("Successfully registered! Welcome to our community!");
@@ -152,18 +148,6 @@ const RegisterPage = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {/* <TextField
-              placeholder="Address"
-              variant="outlined"
-              sx={borderless}
-              fullWidth
-            />
-            <TextField
-              placeholder="Country"
-              variant="outlined"
-              sx={borderless}
-              fullWidth
-            /> */}
             <TextField
               placeholder="Phone number"
               variant="outlined"
@@ -172,34 +156,6 @@ const RegisterPage = () => {
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
-            {/* <TextField
-              placeholder="Jobs"
-              variant="outlined"
-              sx={borderless}
-              fullWidth
-            />
-            <Button
-              variant="outlined"
-              component="label"
-              fullWidth
-              sx={{
-                borderColor: "#ccc",
-                color: "black",
-                backgroundColor: "white",
-                borderRadius: 2,
-                height: 56,
-                textTransform: "none",
-                fontSize: "1rem",
-              }}
-            >
-              Upload photo
-              <input
-                type="file"
-                hidden
-                accept="image/*"
-                onChange={handlePhotoUpload}
-              />
-            </Button> */}
 
             <TextField
               placeholder="Password"
@@ -225,6 +181,16 @@ const RegisterPage = () => {
               }}
             />
           </Box>
+
+          <FormControlLabel
+            control={
+              <Switch
+                checked={isMerchant}
+                onChange={(e) => setIsMerchant(e.target.checked)}
+              />
+            }
+            label="MERCHANT"
+          />
 
           <LoadingButton
             fullWidth

@@ -108,7 +108,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ onSuccess }) => {
         title: title.trim(),
         description: description.trim(),
         category: category.trim(),
-        subcategory: subCategory.trim(), // ✅ added
+        subcategory: subCategory.trim(),
         tags: tags.trim(),
         price,
         beforeDiscount: beforeDiscount || null,
@@ -116,8 +116,8 @@ const ProductForm: React.FC<ProductFormProps> = ({ onSuccess }) => {
         dimensions: dimensions.trim(),
         stock,
         location: location.trim(),
-        isFeatured, // ✅ boolean
-        isAvailable, // ✅ boolean
+        isFeatured,
+        isAvailable,
       };
       formData.append("data", JSON.stringify(data));
 
