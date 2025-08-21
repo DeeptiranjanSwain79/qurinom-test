@@ -26,7 +26,7 @@ const HomePage = () => {
           variant="h3"
           sx={{ fontWeight: "bold", mb: 2, fontFamily: "Philosopher" }}
         >
-          Welcome to Melkite Store
+          Welcome to E CommerceStore
         </Typography>
         <Typography variant="h6" sx={{ mb: 4 }}>
           Discover authentic products, curated just for you.

@@ -34,7 +34,7 @@ const StorePage = () => {
   }, [setActiveText]);
   return (
     <Layout>
-      <StoreComponent title="Melkite Store" />
+      <StoreComponent title="Store" />
     </Layout>
   );
 };

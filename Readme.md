@@ -13,8 +13,8 @@ store/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/melkite-store.git
-cd melkite-store
+git clone https://github.com/DeeptiranjanSwain79/qurinom-test.git
+cd qurinom-test
 ````
 
 ---

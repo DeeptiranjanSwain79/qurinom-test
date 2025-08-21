@@ -107,7 +107,7 @@ export const LoginComponent = () => {
               color: red,
             }}
           >
-            {activeText === "login" ? "Log In" : "Melkite Diaspora"}
+            Log In
           </Typography>
 
           <TextField
