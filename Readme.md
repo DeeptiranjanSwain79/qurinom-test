@@ -5,7 +5,7 @@ Supports authentication (JWT), Firebase integration, and modern UI.
 
 ## 🚀 Project Structure
 
-melkite-store/
+store/
 ├── backend/ # Node.js + Express + MongoDB
 ├── frontend/ # React + Material UI
 

@@ -45,7 +45,6 @@ export const updateUserDetails = catchAsyncError(async (req: any, res: Response,
                 lasstName: updatedUser.lastName,
                 email: updatedUser.email,
                 role: updatedUser.role,
-                isVerified: updatedUser.isVerified
             }
             res.status(200).json({ user: encryptResponse(userObj) });
         } else {
