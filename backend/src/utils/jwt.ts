@@ -11,7 +11,6 @@ export const sendToken = (user: IUser, statusCode: number, res: Response, messag
         lastName: user.lastName,
         email: user.email,
         role: user.role,
-        isVerified: user.isVerified
     }
 
     res.status(statusCode).json({
