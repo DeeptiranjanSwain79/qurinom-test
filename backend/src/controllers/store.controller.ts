@@ -211,6 +211,76 @@ export const getProducts = catchAsyncError(
         }
     }
 );
+export const getProductsMerchant = catchAsyncError(
+    async (req: any, res: Response, next: NextFunction) => {
+        try {
+            const role = req.user.role;
+            // Pagination
+            const page = parseInt(req.query.page as string) || 1;
+            const limit = parseInt(req.query.limit as string) || 10;
+            const skip = (page - 1) * limit;
+
+            // Filters
+            const {
+                search,
+                category,
+                subcategory,
+                minPrice,
+                maxPrice,
+                isAvailable,
+                isFeatured,
+                location,
+                sortBy, // NEW: price, rating, createdAt, etc.
+            } = req.query;
+
+            const filter: Record<string, unknown> = {};
+
+            if (search) {
+                filter.title = { $regex: search, $options: "i" };
+            }
+            if (category) filter.category = category;
+            if (subcategory) filter.subcategory = subcategory;
+            if (location) filter.location = { $regex: location, $options: "i" };
+            if (minPrice || maxPrice) {
+                filter.price = {};
+                if (minPrice) (filter.price as any).$gte = Number(minPrice);
+                if (maxPrice) (filter.price as any).$lte = Number(maxPrice);
+            }
+            if (isAvailable) filter.isAvailable = isAvailable === "true";
+            if (isFeatured) filter.isFeatured = isFeatured === "true";
+
+            if (role === userRoleEnum.MERCHANT) {
+                filter.createdBy = req.user._id!;
+            }
+
+            // Sorting
+            // let sort: Record<string, 1 | -1> = { createdAt: -1 }; // default newest first
+            let sort: Record<string, 1 | -1> = { price: 1 };
+            if (sortBy) {
+                const order = sortBy === "priceLowHigh" ? 1 : -1;
+                sort = { price: order };
+            }
+
+            const totalProducts = await ProductModel.countDocuments(filter);
+
+            const products = await ProductModel.find(filter)
+                .sort(sort)
+                .skip(skip)
+                .limit(limit);
+
+            res.status(200).json({
+                success: true,
+                page,
+                totalPages: Math.ceil(totalProducts / limit),
+                totalProducts,
+                products: encryptResponse(products),
+            });
+        } catch (error: any) {
+            console.log(error)
+            return next(new ErrorHandler(error.message, 500));
+        }
+    }
+);
 
 
 export const deleteProduct = catchAsyncError(async (req: any, res: Response, next: NextFunction) => {

@@ -22,7 +22,7 @@ export interface IUser extends Document {
 export enum userRoleEnum {
     USER = "USER",
     ADMIN = "ADMIN",
-    MANAGER = "MERCHANT"
+    MERCHANT = "MERCHANT"
 }
 
 const userSchema: Schema<IUser> = new Schema({

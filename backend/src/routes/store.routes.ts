@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authorizeRoles, isAuthenticated } from "../middleware/auth";
-import { createProduct, deleteProduct, getProductDetails, getProducts, updateProduct } from "../controllers/store.controller";
+import { createProduct, deleteProduct, getProductDetails, getProducts, getProductsMerchant, updateProduct } from "../controllers/store.controller";
 import upload from "../utils/multer";
 
 const storeRouter = Router();
@@ -17,6 +17,7 @@ storeRouter.route("/create")
     );
 
 storeRouter.route("/").get(getProducts);
+storeRouter.route("/admin").get(isAuthenticated, authorizeRoles("MERCHANT", "ADMIN"), getProductsMerchant);
 
 storeRouter.route("/:productId")
     .get(getProductDetails)

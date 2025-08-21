@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
-import BackendAPI from "../../../api/axiosClient";
+import { PrivateAPI } from "../../../api/axiosClient";
 import {
   ProductCategoryArray,
   SubCategoryArray,
@@ -59,7 +59,7 @@ const AdminProductsTable: React.FC = () => {
   const fetchProducts = useCallback(async () => {
     try {
       setLoading(true);
-      const { data, status } = await BackendAPI.get("/store", {
+      const { data, status } = await PrivateAPI.get("/store/admin", {
         params: {
           search,
           category,

@@ -2,8 +2,8 @@ export const API_VERSION: string = "v1";
 
 export const TOKEN_KEY: string = "AUTH_TOKEN";
 
-// export const BASE_URL: string = `http://localhost:5000/api/${API_VERSION}`;
-export const BASE_URL: string = `https://qurinom-test.vercel.app/api/${API_VERSION}`;
+export const BASE_URL: string = `http://localhost:5000/api/${API_VERSION}`;
+// export const BASE_URL: string = `https://qurinom-test.vercel.app/api/${API_VERSION}`;
 
 export const SECRET_KEY: string = "$2y$12$7YhjQDHInvx7tXFdswJIbOaOeRGeqM9f9YzReT7QRYhdtPUpOrOM2";
 
